@@ -4,7 +4,7 @@ import streamlit as st
 from streamlit.components.v1 import html
 
 # >>> Hardcoded path to your attached image (already available)
-IMAGE_PATH = "playbook_framework_complete.png"
+IMAGE_PATH = "Playbook_framework_complete.png"
 
 st.set_page_config(
     page_title="Business Architecture Transformation Roadmap - Framework Navigator",
