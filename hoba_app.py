@@ -5,7 +5,7 @@ from streamlit.components.v1 import html
 
 # Set page configuration
 st.set_page_config(
-    page_title="HOBA Framework Navigator",
+    page_title="Business Architecture Transformation Roadmap - Framework Navigator",
     page_icon="🏢",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -14,11 +14,11 @@ st.set_page_config(
 # Define the detailed content for each HOBA stage
 stage_content = {
     "Business Problem": """
-    **Primary Objective(s) Mapped:**
-    - Communicate enterprise objectives...
-    - Review existing business processes...
+    **Central 1 Objective(s) Mapped:**
+    - Communicate enterprise objectives and transformation roadmaps with infrastructure, applications, solutions, and business leaders
+    - Review existing business processes and establish metrics to improve business processes, as well as support of all architectural disciplines under their direction.
     
-    **How the Objective is Executed within the HOBA Stage:**
+    **How the Objective is Executed within the Playbook Stage:**
     This is the "why." You start by understanding and communicating the business problems, 
     pain points, and strategic objectives that the transformation aims to solve. 
     This justifies all subsequent architecture work.
@@ -30,9 +30,9 @@ stage_content = {
     """,
     
     "Business Motivation": """
-    **Primary Objective(s) Mapped:**
-    - Communicate enterprise objectives and transformation roadmaps...
-    - Integrate strategic guidelines...
+    **Central 1 Objective(s) Mapped:**
+    - Communicate enterprise objectives and transformation roadmaps with infrastructure, applications, solutions, and business leaders.
+    - Integrate strategic guidelines into project implementation
     - Research new tech trends and develop position papers
     
     **How the Objective is Executed within the HOBA Stage:**
@@ -46,13 +46,13 @@ stage_content = {
     """,
     
     "Business Model": """
-    **Primary Objective(s) Mapped:**
-    - Define and maintain... target architecture roadmaps...
-    - Find and resolve portfolio-wide... interdependencies
-    - Review existing business processes...
-    - Work on highly complex projects...
+    **Central Objective(s) Mapped:**
+    - Define and maintain comprehensive technical standards and 3–5-year target architecture roadmaps for key technologies (infrastructure, application layers);
+    - Find and resolve portfolio-wide and project-wide interdependencies and ensure project scheduled accordingly
+    - Review existing business processes and establish metrics to improve business processes, as well as support of all architectural disciplines under their direction.
+    - Work on highly complex projects that require in-depth knowledge across multiple specialized architecture domains.
     
-    **How the Objective is Executed within the HOBA Stage:**
+    **How the Objective is Executed within the Playbook Stage:**
     This is the CORE of the mapping. 
     - Target Roadmaps are defined based on evolving Business Capabilities.
     - Interdependencies are found by analyzing Value Streams that cut across capabilities.
@@ -66,11 +66,11 @@ stage_content = {
     """,
     
     "Business Requirements": """
-    **Primary Objective(s) Mapped:**
+    **Central 1 Objective(s) Mapped:**
     - Work with project teams to ensure adherence to standards
     - Integrate strategic guidelines into project implementation
-    - Participate in technology selection (RFP, RFI)
-    - Manage exceptions to architectural standards
+    - Participate and contribute to technology selection due diligence processes (RFP, RFI, etc.)
+    - Manage exceptions to architectural standards at an enterprise level.
     
     **How the Objective is Executed within the HOBA Stage:**
     This is the "how" for projects. 
@@ -85,12 +85,12 @@ stage_content = {
     """,
     
     "Design the Business Change": """
-    **Primary Objective(s) Mapped:**
+    **Central 1 Objective(s) Mapped:**
     - Work with project teams and architects...
     - Work on highly complex projects...
     - Support all architectural disciplines...
     
-    **How the Objective is Executed within the HOBA Stage:**
+    **How the Objective is Executed within the Playbook Stage:**
     At this stage, architects design solutions that fulfill the requirements. 
     Their designs must show how they enable the Value Streams and Capabilities from Stage 3, 
     using the Standards defined in Stage 4.
