@@ -7,7 +7,7 @@ from streamlit.components.v1 import html
 IMAGE_PATH = "Playbook_framework_complete.png"
 
 st.set_page_config(
-    page_title="Business Architecture Transformation Roadmap - Framework Navigator",
+    page_title="Business Transformation - Roadmap Navigator",
     page_icon="🏢",
     layout="wide",
     initial_sidebar_state="expanded"
