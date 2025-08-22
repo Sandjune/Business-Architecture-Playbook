@@ -101,7 +101,7 @@ stage_content = {
     - Evaluate technologies based on their potential to enable business capabilities
     """,
     "Implement the Business Change": """
-    **Primary Objective(s) Mapped:**
+    **Central 1 Objective(s) Mapped:**
     - Establish metrics to improve business processes
     - Identify opportunities to improve EA maturity
     - Facilitate the EA governance processes.
