@@ -1,7 +1,8 @@
 # Business-Architecture-Playbook
 import streamlit as st
-import graphviz as graphviz
 from streamlit.components.v1 import html
+from PIL import Image
+import io
 
 # Set page configuration
 st.set_page_config(
@@ -11,7 +12,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Define the detailed content for each HOBA stage
+# ------------------------------
+# HOBA stage content (unchanged)
+# ------------------------------
 stage_content = {
     "Business Problem": """
     **Central 1 Objective(s) Mapped:**
@@ -119,48 +122,55 @@ stage_content = {
     """
 }
 
-# Function to create the HOBA diagram
-def create_hoba_diagram():
-    # Create a graph
-    dot = graphviz.Digraph(comment='HOBA Framework')
-    dot.attr(rankdir='TB', size='12,8', bgcolor='lightgray')
-    
-    # Define nodes with styling
-    dot.node('A', '1. Business Problem', 
-             shape='box', style='filled', fillcolor='#90be6d', fontsize='14', width='2', height='1')
-    dot.node('B', '2. Business Motivation', 
-             shape='box', style='filled', fillcolor='#e9c46a', fontsize='14', width='2', height='1')
-    dot.node('C', '3. Business Model\n(Capabilities & Value Streams)', 
-             shape='box', style='filled', fillcolor='#f8961e', fontsize='14', width='2.5', height='1.2')
-    dot.node('D', '4. Business Requirements\n(Initiatives)', 
-             shape='box', style='filled', fillcolor='#f3722c', fontsize='14', width='2.5', height='1.2')
-    dot.node('E', '5. Design the Business Change\n(Solution Architecture)', 
-             shape='box', style='filled', fillcolor='#f94144', fontsize='14', width='2.5', height='1.2')
-    dot.node('F', '6. Implement the Business Change\n(Transformation)', 
-             shape='box', style='filled', fillcolor='#577590', fontsize='14', width='2.5', height='1.2')
-    
-    # Define edges
-    dot.edges(['AB', 'BC', 'CD', 'DE', 'EF'])
-    
-    # Add cross-cutting elements
-    dot.node('G', 'Technical Standards', 
-             shape='box', style='filled,dashed', fillcolor='white', fontsize='12', width='2', height='0.7')
-    dot.node('H', 'Governance Process', 
-             shape='box', style='filled,dashed', fillcolor='white', fontsize='12', width='2', height='0.7')
-    
-    # Connect cross-cutting elements
-    dot.edge('G', 'D', style='dashed', arrowhead='none')
-    dot.edge('H', 'F', style='dashed', arrowhead='none')
-    dot.edge('G', 'H', style='invis')
-    
-    return dot
+# ---------------------------------------
+# Helpers to store / show the hero image
+# ---------------------------------------
+def load_image_from_bytes(file_bytes: bytes):
+    try:
+        return Image.open(io.BytesIO(file_bytes))
+    except Exception:
+        return None
 
-# Main app
+def show_picture():
+    st.title("HOBA Framework: Visual Overview")
+    col1, col2, col3 = st.columns([1, 8, 1])
+    with col2:
+        if "hero_image_bytes" in st.session_state:
+            img = load_image_from_bytes(st.session_state["hero_image_bytes"])
+            if img:
+                st.image(img, use_container_width=True)
+            else:
+                st.warning("Could not open the uploaded image. Please upload a supported format (PNG/JPG/WebP).")
+        else:
+            st.info("Upload a picture from the sidebar to display it here.")
+
+        st.markdown("""
+        **How to use this view:**
+        - Use the sidebar to navigate to any HOBA stage for detailed information.
+        - Click **Back to Picture** on a stage page to return to this image.
+        """)
+
+    with st.expander("Understanding the Visual Workflow"):
+        st.markdown("""
+        The picture above serves as the entry-point to your Business Architecture playbook.
+        Use the sidebar to jump into each stage:
+        
+        1. **Business Problem** → establish the why.
+        2. **Business Motivation** → define strategies and principles.
+        3. **Business Model** → map capabilities and value streams.
+        4. **Business Requirements** → guide initiatives and selections.
+        5. **Design the Business Change** → architect solutions.
+        6. **Implement the Business Change** → measure and govern.
+        """)
+
+# ----------------
+# Main app logic
+# ----------------
 def main():
     # Initialize session state for page navigation
-    if 'current_stage' not in st.session_state:
+    if "current_stage" not in st.session_state:
         st.session_state.current_stage = None
-    
+
     # Sidebar
     with st.sidebar:
         st.title("HOBA Framework Navigator")
@@ -168,62 +178,40 @@ def main():
         The **House of Business Architecture (HOBA)** framework provides a structured, 
         business-out approach to transformation, ensuring that technical activities are 
         directly traceable to business objectives.
-        
-        Select a stage to learn more about how it maps to enterprise architecture objectives.
         """)
-        
+
+        # Upload/replace the hero picture
+        uploaded = st.file_uploader(
+            "Upload the picture to display",
+            type=["png", "jpg", "jpeg", "webp"],
+            help="Attach the image you want to show on the main page."
+        )
+        if uploaded is not None:
+            st.session_state["hero_image_bytes"] = uploaded.read()
+            st.success("Picture loaded. Go back to the main page to view it.")
+
+        st.markdown("### Stages")
         # Create buttons for each stage
         for stage in stage_content.keys():
             if st.button(stage, use_container_width=True):
                 st.session_state.current_stage = stage
-                
+
         st.markdown("---")
         st.markdown("### About")
         st.markdown("This application demonstrates how enterprise architecture objectives map to the HOBA framework.")
-    
+
     # Main content area
     if st.session_state.current_stage:
         # Show detailed content for the selected stage
         st.title(st.session_state.current_stage)
         st.markdown(stage_content[st.session_state.current_stage])
-        
-        if st.button("Back to Diagram"):
+
+        if st.button("Back to Picture"):
             st.session_state.current_stage = None
             st.rerun()
     else:
-        # Show the diagram
-        st.title("HOBA Framework: Mapping Enterprise Architecture Objectives")
-        
-        col1, col2, col3 = st.columns([1, 8, 1])
-        with col2:
-            # Display the diagram
-            diagram = create_hoba_diagram()
-            st.graphviz_chart(diagram, use_container_width=True)
-            
-            st.markdown("""
-            **How to use this diagram:**
-            - Each box represents a stage in the HOBA framework
-            - Click on any stage in the sidebar to view detailed information
-            - The diagram shows the flow from business problem to implementation
-            - Cross-cutting elements (Technical Standards and Governance Process) apply across multiple stages
-            """)
-            
-            # Add explanation of the visual workflow
-            with st.expander("Understanding the Visual Workflow"):
-                st.markdown("""
-                The flowchart shows how the outputs of each HOBA stage directly enable you to 
-                achieve enterprise architecture objectives more effectively:
-                
-                1. **Business Problem** provides justification for all architecture work
-                2. **Business Motivation** outputs strategies and principles
-                3. **Business Model** enables core EA activities like creating roadmaps and identifying interdependencies
-                4. **Business Requirements** guides project implementation, technology selection, and exception management
-                5. **Design the Business Change** focuses on solution architecture
-                6. **Implement the Business Change** establishes metrics and runs the governance process
-                
-                The **Technical Standards** and **Governance Process** (in dashed boxes) are cross-cutting 
-                activities that apply to multiple stages.
-                """)
+        # Show the uploaded picture (replacing the old diagram)
+        show_picture()
 
 if __name__ == "__main__":
     main()
