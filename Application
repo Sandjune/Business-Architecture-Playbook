@@ -1,5 +1,4 @@
 # Business-Architecture-Playbook
-pip install streamlit graphviz
 import streamlit as st
 import graphviz as graphviz
 from streamlit.components.v1 import html
