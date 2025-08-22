@@ -148,7 +148,7 @@ def main():
         st.session_state.current_stage = None
 
     with st.sidebar:
-        st.title("Business Architecture Transformer - Framework Navigator")
+        st.title("Business Transformation - Roadmap Navigator")
         st.markdown("""
         The **The Business Architecture Playbook** framework provides a structured, 
         business-out approach to transformation, ensuring that technical activities are 
