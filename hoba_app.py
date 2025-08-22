@@ -126,7 +126,7 @@ def show_picture():
             st.image(IMAGE_PATH, use_container_width=True)
         else:
             st.warning(f"Image not found at **{IMAGE_PATH}**.")
-        st.markdown("**The Complete Playbook Framework Implementation Cycle:**""
+        st.markdown("**The Complete Playbook Framework Implementation Cycle:**"
         **How to use this view:**
         - Use the sidebar to navigate to any Playbook stage for detailed information.
         - Click **Back to Picture** on a stage page to return to this image.
