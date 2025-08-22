@@ -86,9 +86,9 @@ stage_content = {
     """,
     "Design the Business Change": """
     **Central 1 Objective(s) Mapped:**
-    - Work with project teams and architects...
-    - Work on highly complex projects...
-    - Support all architectural disciplines...
+    - Work with project teams and architects to ensure adherence to standards
+    - Work on highly complex projects that require in-depth knowledge across multiple specialized architecture domains.
+    - Support all architectural disciplines.
     
     **How the Objective is Executed within the Playbook Stage:**
     At this stage, architects design solutions that fulfill the requirements. 
