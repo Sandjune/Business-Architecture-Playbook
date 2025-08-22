@@ -1,10 +1,11 @@
 # Business-Architecture-Playbook
+import os
 import streamlit as st
 from streamlit.components.v1 import html
-from PIL import Image
-import io
 
-# Set page configuration
+# >>> Hardcoded path to your attached image (already available)
+IMAGE_PATH = "/mnt/data/deepseek_mermaid_20250821_480e45.png"
+
 st.set_page_config(
     page_title="Business Architecture Transformation Roadmap - Framework Navigator",
     page_icon="🏢",
@@ -31,7 +32,6 @@ stage_content = {
     - Document specific "business problems" the architecture must solve
     - Formalize a "Problem Statement" agreed upon by all key stakeholders
     """,
-    
     "Business Motivation": """
     **Central 1 Objective(s) Mapped:**
     - Communicate enterprise objectives and transformation roadmaps with infrastructure, applications, solutions, and business leaders.
@@ -47,7 +47,6 @@ stage_content = {
     - Create a "Motivation Model" showing architectural principles and decisions
     - Develop position papers on new technologies
     """,
-    
     "Business Model": """
     **Central Objective(s) Mapped:**
     - Define and maintain comprehensive technical standards and 3–5-year target architecture roadmaps for key technologies (infrastructure, application layers);
@@ -67,7 +66,6 @@ stage_content = {
     - Define technical standards and target architecture by capability
     - Model key value streams to identify bottlenecks
     """,
-    
     "Business Requirements": """
     **Central 1 Objective(s) Mapped:**
     - Work with project teams to ensure adherence to standards
@@ -75,143 +73,5 @@ stage_content = {
     - Participate and contribute to technology selection due diligence processes (RFP, RFI, etc.)
     - Manage exceptions to architectural standards at an enterprise level.
     
-    **How the Objective is Executed within the HOBA Stage:**
-    This is the "how" for projects. 
-    - Projects (Initiatives) are assessed against the target capability model (Governance).
-    - Technology selection is guided by the requirements of the capabilities the project is enhancing.
-    - Exceptions are managed by evaluating their impact on the target business capability model.
-    
-    **Key Activities:**
-    - Require architects to identify which business capabilities each project impacts
-    - Use EA governance process to review projects against capability-centric view
-    - Frame RFP/RFI questions around capability requirements
-    """,
-    
-    "Design the Business Change": """
-    **Central 1 Objective(s) Mapped:**
-    - Work with project teams and architects...
-    - Work on highly complex projects...
-    - Support all architectural disciplines...
-    
-    **How the Objective is Executed within the Playbook Stage:**
-    At this stage, architects design solutions that fulfill the requirements. 
-    Their designs must show how they enable the Value Streams and Capabilities from Stage 3, 
-    using the Standards defined in Stage 4.
-    
-    **Key Activities:**
-    - Mandate that solution architects use the defined capability map and value streams
-    - Research and develop position papers on new technologies
-    - Evaluate technologies based on their potential to enable business capabilities
-    """,
-    
-    "Implement the Business Change": """
-    **Primary Objective(s) Mapped:**
-    - Establish metrics to improve business processes
-    - Identify opportunities to improve EA maturity
-    - Facilitate the EA governance processes.
-    
-    **How the Objective is Executed within the HOBA Stage:**
-    This is the "measure and govern" stage. 
-    - Metrics are established at the Capability level (e.g., cost, performance of a capability).
-    - Governance is the process of ensuring Initiatives (Stage 4) align with the Model (Stage 3) to achieve Motivation (Stage 2).
-    
-    **Key Activities:**
-    - Establish metrics at the capability level
-    - Maintain the 3-5 year target architecture roadmap as a capability evolution plan
-    - Improve EA maturity by demonstrating how architecture ties to business outcomes
-    """
-}
+    **How the Objective is Executed within**
 
-# ---------------------------------------
-# Helpers to store / show the hero image
-# ---------------------------------------
-def load_image_from_bytes(file_bytes: bytes):
-    try:
-        return Image.open(io.BytesIO(file_bytes))
-    except Exception:
-        return None
-
-def show_picture():
-    st.title("HOBA Framework: Visual Overview")
-    col1, col2, col3 = st.columns([1, 8, 1])
-    with col2:
-        if "hero_image_bytes" in st.session_state:
-            img = load_image_from_bytes(st.session_state["hero_image_bytes"])
-            if img:
-                st.image(img, use_container_width=True)
-            else:
-                st.warning("Could not open the uploaded image. Please upload a supported format (PNG/JPG/WebP).")
-        else:
-            st.info("Upload a picture from the sidebar to display it here.")
-
-        st.markdown("""
-        **How to use this view:**
-        - Use the sidebar to navigate to any HOBA stage for detailed information.
-        - Click **Back to Picture** on a stage page to return to this image.
-        """)
-
-    with st.expander("Understanding the Visual Workflow"):
-        st.markdown("""
-        The picture above serves as the entry-point to your Business Architecture playbook.
-        Use the sidebar to jump into each stage:
-        
-        1. **Business Problem** → establish the why.
-        2. **Business Motivation** → define strategies and principles.
-        3. **Business Model** → map capabilities and value streams.
-        4. **Business Requirements** → guide initiatives and selections.
-        5. **Design the Business Change** → architect solutions.
-        6. **Implement the Business Change** → measure and govern.
-        """)
-
-# ----------------
-# Main app logic
-# ----------------
-def main():
-    # Initialize session state for page navigation
-    if "current_stage" not in st.session_state:
-        st.session_state.current_stage = None
-
-    # Sidebar
-    with st.sidebar:
-        st.title("HOBA Framework Navigator")
-        st.markdown("""
-        The **House of Business Architecture (HOBA)** framework provides a structured, 
-        business-out approach to transformation, ensuring that technical activities are 
-        directly traceable to business objectives.
-        """)
-
-        # Upload/replace the hero picture
-        uploaded = st.file_uploader(
-            "Upload the picture to display",
-            type=["png", "jpg", "jpeg", "webp"],
-            help="Attach the image you want to show on the main page."
-        )
-        if uploaded is not None:
-            st.session_state["hero_image_bytes"] = uploaded.read()
-            st.success("Picture loaded. Go back to the main page to view it.")
-
-        st.markdown("### Stages")
-        # Create buttons for each stage
-        for stage in stage_content.keys():
-            if st.button(stage, use_container_width=True):
-                st.session_state.current_stage = stage
-
-        st.markdown("---")
-        st.markdown("### About")
-        st.markdown("This application demonstrates how enterprise architecture objectives map to the HOBA framework.")
-
-    # Main content area
-    if st.session_state.current_stage:
-        # Show detailed content for the selected stage
-        st.title(st.session_state.current_stage)
-        st.markdown(stage_content[st.session_state.current_stage])
-
-        if st.button("Back to Picture"):
-            st.session_state.current_stage = None
-            st.rerun()
-    else:
-        # Show the uploaded picture (replacing the old diagram)
-        show_picture()
-
-if __name__ == "__main__":
-    main()
