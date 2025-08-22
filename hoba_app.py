@@ -38,7 +38,7 @@ stage_content = {
     - Integrate strategic guidelines into project implementation
     - Research new tech trends and develop position papers
     
-    **How the Objective is Executed within the HOBA Stage:**
+    **How the Objective is Executed within the Playbook Stage:**
     This is the "what." You translate business objectives into concrete strategies and principles. 
     Position papers on new technologies are created here to evaluate their potential to support business motivations.
     
@@ -73,7 +73,7 @@ stage_content = {
     - Participate and contribute to technology selection due diligence processes (RFP, RFI, etc.)
     - Manage exceptions to architectural standards at an enterprise level.
     
-    **How the Objective is Executed within the HOBA Stage:**
+    **How the Objective is Executed within the Playbook Stage:**
     This is the "how" for projects. 
     - Projects (Initiatives) are assessed against the target capability model (Governance).
     - Technology selection is guided by the requirements of the capabilities the project is enhancing.
@@ -106,7 +106,7 @@ stage_content = {
     - Identify opportunities to improve EA maturity
     - Facilitate the EA governance processes.
     
-    **How the Objective is Executed within the HOBA Stage:**
+    **How the Objective is Executed within the Playbook Stage:**
     This is the "measure and govern" stage. 
     - Metrics are established at the Capability level (e.g., cost, performance of a capability).
     - Governance is the process of ensuring Initiatives (Stage 4) align with the Model (Stage 3) to achieve Motivation (Stage 2).
