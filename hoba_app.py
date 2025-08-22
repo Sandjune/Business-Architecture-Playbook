@@ -73,5 +73,103 @@ stage_content = {
     - Participate and contribute to technology selection due diligence processes (RFP, RFI, etc.)
     - Manage exceptions to architectural standards at an enterprise level.
     
-    **How the Objective is Executed within**
+    **How the Objective is Executed within the HOBA Stage:**
+    This is the "how" for projects. 
+    - Projects (Initiatives) are assessed against the target capability model (Governance).
+    - Technology selection is guided by the requirements of the capabilities the project is enhancing.
+    - Exceptions are managed by evaluating their impact on the target business capability model.
+    
+    **Key Activities:**
+    - Require architects to identify which business capabilities each project impacts
+    - Use EA governance process to review projects against capability-centric view
+    - Frame RFP/RFI questions around capability requirements
+    """,
+    "Design the Business Change": """
+    **Central 1 Objective(s) Mapped:**
+    - Work with project teams and architects...
+    - Work on highly complex projects...
+    - Support all architectural disciplines...
+    
+    **How the Objective is Executed within the Playbook Stage:**
+    At this stage, architects design solutions that fulfill the requirements. 
+    Their designs must show how they enable the Value Streams and Capabilities from Stage 3, 
+    using the Standards defined in Stage 4.
+    
+    **Key Activities:**
+    - Mandate that solution architects use the defined capability map and value streams
+    - Research and develop position papers on new technologies
+    - Evaluate technologies based on their potential to enable business capabilities
+    """,
+    "Implement the Business Change": """
+    **Primary Objective(s) Mapped:**
+    - Establish metrics to improve business processes
+    - Identify opportunities to improve EA maturity
+    - Facilitate the EA governance processes.
+    
+    **How the Objective is Executed within the HOBA Stage:**
+    This is the "measure and govern" stage. 
+    - Metrics are established at the Capability level (e.g., cost, performance of a capability).
+    - Governance is the process of ensuring Initiatives (Stage 4) align with the Model (Stage 3) to achieve Motivation (Stage 2).
+    
+    **Key Activities:**
+    - Establish metrics at the capability level
+    - Maintain the 3-5 year target architecture roadmap as a capability evolution plan
+    - Improve EA maturity by demonstrating how architecture ties to business outcomes
+    """
+}
 
+def show_picture():
+    st.title("HOBA Framework: Visual Overview")
+    col1, col2, col3 = st.columns([1, 8, 1])
+    with col2:
+        if os.path.exists(IMAGE_PATH):
+            st.image(IMAGE_PATH, use_container_width=True)
+        else:
+            st.warning(f"Image not found at **{IMAGE_PATH}**.")
+        st.markdown("""
+        **How to use this view:**
+        - Use the sidebar to navigate to any HOBA stage for detailed information.
+        - Click **Back to Picture** on a stage page to return to this image.
+        """)
+    with st.expander("Understanding the Visual Workflow"):
+        st.markdown("""
+        The picture above serves as the entry-point to your Business Architecture playbook.
+        Use the sidebar to jump into each stage:
+        1. **Business Problem** → establish the why.
+        2. **Business Motivation** → define strategies and principles.
+        3. **Business Model** → map capabilities and value streams.
+        4. **Business Requirements** → guide initiatives and selections.
+        5. **Design the Business Change** → architect solutions.
+        6. **Implement the Business Change** → measure and govern.
+        """)
+
+def main():
+    if "current_stage" not in st.session_state:
+        st.session_state.current_stage = None
+
+    with st.sidebar:
+        st.title("HOBA Framework Navigator")
+        st.markdown("""
+        The **House of Business Architecture (HOBA)** framework provides a structured, 
+        business-out approach to transformation, ensuring that technical activities are 
+        directly traceable to business objectives.
+        """)
+        st.markdown("### Stages")
+        for stage in stage_content.keys():
+            if st.button(stage, use_container_width=True):
+                st.session_state.current_stage = stage
+        st.markdown("---")
+        st.markdown("### About")
+        st.markdown("This application demonstrates how enterprise architecture objectives map to the HOBA framework.")
+
+    if st.session_state.current_stage:
+        st.title(st.session_state.current_stage)
+        st.markdown(stage_content[st.session_state.current_stage])
+        if st.button("Back to Picture"):
+            st.session_state.current_stage = None
+            st.rerun()
+    else:
+        show_picture()
+
+if __name__ == "__main__":
+    main()
