@@ -134,7 +134,7 @@ def show_picture():
         """)
     with st.expander("Understanding the Visual Workflow"):
         st.markdown("""
-        The picture above serves as the entry-point to your Business Architecture playbook.
+        The picture above serves as the entry-point to the Business Architecture playbook.
         Use the sidebar to jump into each stage:
        1. **Business Problem** (Why) - Provides justification for all architecture work
         2. **Business Motivation** (What) - Translates objectives into strategies and principles
@@ -161,7 +161,7 @@ def main():
                 st.session_state.current_stage = stage
         st.markdown("---")
         st.markdown("### About")
-        st.markdown("This application demonstrates how enterprise architecture objectives map to the HOBA framework.")
+        st.markdown("This application demonstrates how enterprise architecture objectives map to the Business Architecture Playbook.")
 
     if st.session_state.current_stage:
         st.title(st.session_state.current_stage)
