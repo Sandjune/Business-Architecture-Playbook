@@ -4,7 +4,7 @@ import streamlit as st
 from streamlit.components.v1 import html
 
 # >>> Hardcoded path to your attached image (already available)
-IMAGE_PATH = "/main/deepseek_mermaid_20250821_480e45.png"
+IMAGE_PATH = "deepseek_mermaid_20250821_480e45.png"
 
 st.set_page_config(
     page_title="Business Architecture Transformation Roadmap - Framework Navigator",
