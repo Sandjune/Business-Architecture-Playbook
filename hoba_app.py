@@ -119,7 +119,7 @@ stage_content = {
 }
 
 def show_picture():
-    st.title("HOBA Framework: Visual Overview")
+    st.title("Business Architecture Playbook - Framework: Visual Overview")
     col1, col2, col3 = st.columns([1, 8, 1])
     with col2:
         if os.path.exists(IMAGE_PATH):
@@ -128,7 +128,7 @@ def show_picture():
             st.warning(f"Image not found at **{IMAGE_PATH}**.")
         st.markdown("""
         **How to use this view:**
-        - Use the sidebar to navigate to any HOBA stage for detailed information.
+        - Use the sidebar to navigate to any Playbook stage for detailed information.
         - Click **Back to Picture** on a stage page to return to this image.
         """)
     with st.expander("Understanding the Visual Workflow"):
@@ -148,9 +148,9 @@ def main():
         st.session_state.current_stage = None
 
     with st.sidebar:
-        st.title("HOBA Framework Navigator")
+        st.title("Business Architecture Transformer - Framework Navigator")
         st.markdown("""
-        The **House of Business Architecture (HOBA)** framework provides a structured, 
+        The **The Business Architecture Playbook** framework provides a structured, 
         business-out approach to transformation, ensuring that technical activities are 
         directly traceable to business objectives.
         """)
