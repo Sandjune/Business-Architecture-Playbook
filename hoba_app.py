@@ -126,7 +126,7 @@ def show_picture():
             st.image(IMAGE_PATH, use_container_width=True)
         else:
             st.warning(f"Image not found at **{IMAGE_PATH}**.")
-        st.markdown("""
+        st.markdown("**The Complete Playbook Framework Implementation Cycle:**""
         **How to use this view:**
         - Use the sidebar to navigate to any Playbook stage for detailed information.
         - Click **Back to Picture** on a stage page to return to this image.
@@ -135,12 +135,12 @@ def show_picture():
         st.markdown("""
         The picture above serves as the entry-point to your Business Architecture playbook.
         Use the sidebar to jump into each stage:
-        1. **Business Problem** → establish the why.
-        2. **Business Motivation** → define strategies and principles.
-        3. **Business Model** → map capabilities and value streams.
-        4. **Business Requirements** → guide initiatives and selections.
-        5. **Design the Business Change** → architect solutions.
-        6. **Implement the Business Change** → measure and govern.
+       1. **Business Problem** (Why) - Provides justification for all architecture work
+        2. **Business Motivation** (What) - Translates objectives into strategies and principles
+        3. **Business Model** (Core) - Enables EA activities and produces key outputs
+        4. **Business Requirements** (How) - Guides implementation and manages technology
+        5. **Design the Business Change** (Architect) - Creates solution architectures
+        6. **Implement Business Change** (Measure & Govern) - Establishes metrics and governance
         """)
 
 def main():
