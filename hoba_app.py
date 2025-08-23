@@ -157,7 +157,7 @@ def main():
         business-out approach to transformation, ensuring that technical activities are 
         directly traceable to business objectives.
         """)
-        st.markdown("### Stages mapped to C1 objectives")
+        st.markdown("### Playbook Stages mapped to C1 objectives")
         for stage in stage_content.keys():
             if st.button(stage, use_container_width=True):
                 st.session_state.current_stage = stage
