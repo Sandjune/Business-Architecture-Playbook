@@ -1,4 +1,4 @@
-# Business-Architecture-Playbook
+ # Business-Architecture-Playbook
 import os
 import streamlit as st
 from streamlit.components.v1 import html
@@ -155,7 +155,7 @@ def main():
         business-out approach to transformation, ensuring that technical activities are 
         directly traceable to business objectives.
         """)
-        st.markdown("### Stages")
+        st.markdown("### Stages mapped to C1 objectives")
         for stage in stage_content.keys():
             if st.button(stage, use_container_width=True):
                 st.session_state.current_stage = stage
