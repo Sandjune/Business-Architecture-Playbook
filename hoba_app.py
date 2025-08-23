@@ -122,7 +122,7 @@ stage_content = {
 
 def show_picture():
     st.title("Business Architecture Playbook: Visual Overview")
-    col1, col2, col3 = st.columns([1, 18, 1])
+    col1, col2, col3 = st.columns([1, 20, 1])
     with col2:
         if os.path.exists(IMAGE_PATH):
             st.image(IMAGE_PATH, use_container_width=True)
