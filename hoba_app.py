@@ -13,42 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ------------------------------
-# Wide sidebar + proportional main content
-# ------------------------------
-st.markdown(
-    """
-    <style>
-        /* Wider sidebar */
-        [data-testid="stSidebar"] {
-            min-width: 360px;
-            max-width: 360px;
-        }
 
-        /* Shift main content and header so they align with the wider sidebar */
-        [data-testid="stAppViewContainer"] {
-            margin-left: 380px; /* slightly larger than sidebar width for spacing */
-            padding-right: 1rem;
-        }
-        [data-testid="stHeader"] {
-            margin-left: 380px;
-        }
-
-        /* Responsive tweak on narrower screens */
-        @media (max-width: 1024px) {
-            [data-testid="stSidebar"] {
-                min-width: 300px;
-                max-width: 300px;
-            }
-            [data-testid="stAppViewContainer"],
-            [data-testid="stHeader"] {
-                margin-left: 320px;
-            }
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 # ------------------------------
 # HOBA stage content (unchanged)
